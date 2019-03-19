@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_counter_bloc/blocs/counter_bloc.dart';
+import 'package:flutter_counter_bloc/blocs/theme_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /*
@@ -15,6 +16,7 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CounterBloc _counterBloc = BlocProvider.of<CounterBloc>(context);
+    final ThemeBloc _themeBloc = BlocProvider.of<ThemeBloc>(context);
 
     return Scaffold(
       appBar: AppBar(title: Text('Counter')),
@@ -52,6 +54,15 @@ class CounterPage extends StatelessWidget {
               },
             ),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 5.0),
+            child: FloatingActionButton(
+                child: Icon(Icons.update),
+                onPressed: () {
+                  _themeBloc.dispatch(ThemeEvent.toggle);
+                }
+            ),
+          )
         ],
       ),
     );
